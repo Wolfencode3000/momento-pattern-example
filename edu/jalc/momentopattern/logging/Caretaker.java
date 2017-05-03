@@ -1,6 +1,8 @@
 package edu.jalc.momentopattern.logging;
 
 import edu.jalc.momentopattern.logging.messages.Warn;
+import edu.jalc.momentopattern.logging.observers.ConsoleLogger;
+import edu.jalc.momentopattern.logging.observers.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +11,15 @@ import java.util.stream.Collectors;
 class Caretaker {
 
 	private ArrayList<Message> messages = new ArrayList<Message>();
+	private ArrayList<Observer> observers = new ArrayList<>();
 
-	Caretaker add(Message message){
+	Caretaker(){
+		this.observers.add(new ConsoleLogger());
+	}
+
+	Caretaker add(final Message message){
 		this.messages.add(message);
+		this.observers.parallelStream().forEach((observer) -> observer.observe(message));
 		return this;
 	}
 

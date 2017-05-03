@@ -20,4 +20,5 @@ public class Message {
 	public String toString(){
 		return "[" + this.getClass().getSimpleName().toUpperCase() + "] @ " + this.timestamp+ " :: " + this.message;
 	}
+
 }
