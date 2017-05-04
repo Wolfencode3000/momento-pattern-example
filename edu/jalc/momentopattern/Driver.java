@@ -13,6 +13,13 @@ public class Driver {
 		logger.message(State.DEBUG, "debugging").save();
 		logger.message(State.INFO, "info").save();
 		logger.message(State.WARN, "oh oh").save();
+      logger.message(State.ERROR, "ERROR ERROR").save();
+      try {
+         Thread.sleep(500);
+      }
+      catch (Exception e){
+      }
+      logger.message(State.FATAL, "FATAL").save();
 
 	}
 }
